@@ -5,7 +5,11 @@ var path = require("path");
 var todo = require("./model/todo.js");
 //both index.js and things.js should be in same directory
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/todo", { useMongoClient: true });
+//mongoose.connect("mongodb://localhost/todo", { useMongoClient: true });
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
