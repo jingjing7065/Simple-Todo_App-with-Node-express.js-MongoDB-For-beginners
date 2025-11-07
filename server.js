@@ -7,9 +7,11 @@ var todo = require("./model/todo.js");
 var mongoose = require("mongoose");
 //mongoose.connect("mongodb://localhost/todo", { useMongoClient: true });
 mongoose.connect(process.env.MONGO_URI, {
+  tls: true,
+  tlsCAFile: __dirname + '/global-bundle.pem', // 确保路径正确
   useNewUrlParser: true,
   useUnifiedTopology: true
-});
+})
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
